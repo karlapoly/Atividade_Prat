@@ -1,17 +1,23 @@
 # solucoes.py
 def sao_anagramas(string1, string2):
+    """
+    Verifica se duas strings são anagramas, ignorando espaços e case.
+
+    Args:
+        string1 (str): A primeira string para comparação.
+        string2 (str): A segunda string para comparação.
+
+    Returns:
+        bool: True se forem anagramas, False caso contrário.
+    """
+    from collections import Counter
     # 1. Normalização: remover espaços e converter para minúsculas
 
-    string1_limpa = string1.replace(" ", "").lower()
-    string2_limpa = string2.replace(" ", "").lower()
-    
-    # 2. Ordenação: converter a string limpa numa lista de caracteres e ordena
-    lista_ordenada_1 = sorted(string1_limpa)
-    lista_ordenada_2 = sorted(string2_limpa)
-    
-    # 3. Comparação
-    
-    return lista_ordenada_1 == lista_ordenada_2
+    s1 = string1.replace(" ", "").lower()
+    s2 = string2.replace(" ", "").lower()
+
+    # Compara as contagens de caracteres
+    return Counter(s1) == Counter(s2)
 
 def cifra_de_cesar(texto: str, deslocamento: int) -> str:
     """Aplica a cifra de César ao texto com o deslocamento dado."""
