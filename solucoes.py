@@ -1,17 +1,15 @@
 # solucoes.py
 def sao_anagramas(string1, string2):
     # 1. Normalização: remover espaços e converter para minúsculas
-    # O que achas de usar o método replace() para remover espaços e lower() para minúsculas?
+
     string1_limpa = string1.replace(" ", "").lower()
     string2_limpa = string2.replace(" ", "").lower()
     
-    # 2. Ordenação: converter a string limpa numa lista de caracteres e ordená-la
-    # O que achas de usar a função sorted() do Python?
+    # 2. Ordenação: converter a string limpa numa lista de caracteres e ordena
     lista_ordenada_1 = sorted(string1_limpa)
     lista_ordenada_2 = sorted(string2_limpa)
     
     # 3. Comparação
-    # Como podes verificar se estas duas listas ordenadas são iguais?
     
     return lista_ordenada_1 == lista_ordenada_2
 
