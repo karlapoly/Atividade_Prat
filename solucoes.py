@@ -2,20 +2,16 @@
 def sao_anagramas(string1, string2):
     """
     Verifica se duas strings são anagramas, ignorando espaços e case.
-
     Args:
         string1 (str): A primeira string para comparação.
         string2 (str): A segunda string para comparação.
-
     Returns:
         bool: True se forem anagramas, False caso contrário.
     """
     from collections import Counter
     # 1. Normalização: remover espaços e converter para minúsculas
-
     s1 = string1.replace(" ", "").lower()
     s2 = string2.replace(" ", "").lower()
-
     # Compara as contagens de caracteres
     return Counter(s1) == Counter(s2)
 
