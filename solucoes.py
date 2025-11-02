@@ -37,8 +37,29 @@ def cifra_de_cesar(texto: str, deslocamento: int) -> str:
     return resultado
 
 def encontrar_maior_palavra(frase: str) -> str:
-    """Retorna a maior palavra na frase (pontuação ignorada)."""
-    raise NotImplementedError
+    """
+    Encontra a maior palavra em uma frase, ignorando pontuação.
+    
+    Args:
+        frase (str): A frase para analisar
+        
+    Returns:
+        str: A maior palavra encontrada (primeira se houver empate)
+    """
+    import string
+    
+    palavras = frase.split()
+    maior_palavra = ""
+    maior_comprimento = 0
+    
+    for palavra in palavras:
+        palavra_limpa = palavra.strip(string.punctuation)
+        
+        if len(palavra_limpa) > maior_comprimento:
+            maior_palavra = palavra_limpa
+            maior_comprimento = len(palavra_limpa)
+    
+    return maior_palavra
 
 # --- Secção de Interação com o Utilizador ---
 
@@ -49,11 +70,12 @@ def menu_interativo():
         print("Escolha uma opção:")
         print("1 - Verificar Anagramas")
         print("2 - Encontrar Maior Palavra")
-        print("3 - Ver Exemplos")
-        print("4 - Sair")
+        print("3 - Cifra de Cesar")
+        print("4 - Ver Exemplos")
+        print("5 - Sair")
         
         try:
-            opcao = input("\nDigite sua opção (1, 2, 3 ou 4): ")
+            opcao = input("\nDigite sua opção (1, 2, 3 , 4 ou 5): ")
             
             if opcao == "1":
                 # Verificador de Anagramas
@@ -79,8 +101,19 @@ def menu_interativo():
                 print("\n--- Resultado ---")
                 print(f'A maior palavra na frase é: "{maior_palavra}"')
                 print(f'Comprimento: {len(maior_palavra)} caracteres')
-            
             elif opcao == "3":
+                # Cifra de César
+                print("\n--- Cifra de César ---")
+                texto_usuario = input("Por favor, insira o texto para cifrar: ")
+                deslocamento_usuario = int(input("Por favor, insira o deslocamento (número inteiro): "))
+                
+                texto_cifrado = cifra_de_cesar(texto_usuario, deslocamento_usuario)
+                
+                print("\n--- Resultado ---")
+                print(f'Texto cifrado: "{texto_cifrado}"')
+            
+            
+            elif opcao == "4":
                 # Mostrar exemplos
                 print("\n--- EXEMPLOS DAS FUNÇÕES ---")
                 
@@ -111,12 +144,26 @@ def menu_interativo():
                     print(f'   Maior palavra: "{maior}" ({len(maior)} caracteres)')
                     print()
             
-            elif opcao == "4":
+                print("\n2. Exemplos de palavras cifradas:")
+                cifradas = [
+                    "abc,2",
+                    "xyz,3",
+                    "Ataque ao Amanhecer,5"
+                ]
+                
+                for frase in cifradas:
+                    texto, desloc = frase.split(',')[0], int(frase.split(',')[1])
+                    cifradecesar = cifra_de_cesar(texto, desloc)
+                    print(f'   Frase: "{texto}" com deslocamento {desloc}')
+                    print(f'   cifra de cesar: {cifradecesar}')
+                    print()
+
+            elif opcao == "5":
                 print("\nObrigado por usar o programa! Até logo!")
                 break
                 
             else:
-                print("\nOpção inválida! Por favor, escolha 1, 2, 3 ou 4.")
+                print("\nOpção inválida! Por favor, escolha 1, 2, 3, 4 ou 5.")
                 
         except KeyboardInterrupt:
             print("\n\nPrograma interrompido pelo usuário. Até logo!")
